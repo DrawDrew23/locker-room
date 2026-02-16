@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locker Room Access</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #262626;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 { color: #ffcc00; margin-bottom: 0.5rem; font-size: 2rem; text-transform: uppercase; }
+        p { color: #aaaaaa; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #333;
+            color: white;
+            box-sizing: border-box; /* Prevents input from overflowing */
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 8px;
+            color: #1a1a1a;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .btn-primary:hover { background-color: #e6b800; transform: translateY(-2px); }
+
+        .toggle-text { margin-top: 20px; font-size: 0.85rem; color: #888; }
+        .toggle-link { color: #ffcc00; cursor: pointer; text-decoration: underline; }
+        
+        /* Hidden state for switching forms */
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>LOCKER ROOM</h1>
+    
+    <div id="login-box">
+        <p>Subscriber-Only Access</p>
+        <form id="loginForm">
+            <input type="email" placeholder="Email Address" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit" class="btn-primary">Login to Access</button>
+        </form>
+        <div class="toggle-text">
+            Don't have an account? <span class="toggle-link" onclick="toggleForm()">Sign Up</span>
+        </div>
+    </div>
+
+    <div id="register-box" class="hidden">
+        <p>Apply for Membership</p>
+        <form id="registerForm">
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="password" placeholder="Create Password" required>
+            <button type="submit" class="btn-primary">Request Access</button>
+        </form>
+        <div class="toggle-text">
+            Already a subscriber? <span class="toggle-link" onclick="toggleForm()">Login here</span>
+        </div>
+    </div>
+
+    <div style="margin-top: 25px; font-size: 0.75rem; color: #555;">
+        Access is subject to admin approval.
+    </div>
+</div>
+
+<script>
+    function toggleForm() {
+        document.getElementById('login-box').classList.toggle('hidden');
+        document.getElementById('register-box').classList.toggle('hidden');
+    }
+
+    // Example handling
+    document.getElementById('registerForm').onsubmit = function(e) {
+        e.preventDefault();
+        alert('Your request has been sent to the admin for approval! Please wait for a confirmation email.');
+    };
+</script>
+
+</body>
+</html>
