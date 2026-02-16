@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locker Room Services</title>
+    <style>
+        body { font-family: sans-serif; background: #1a1a1a; color: white; padding: 20px; text-align: center; }
+        .content-box { background: #262626; padding: 20px; border-radius: 12px; max-width: 600px; margin: auto; border: 2px solid #ffcc00; }
+        h1 { color: #ffcc00; }
+        .service-item { background: #333; padding: 15px; margin: 10px 0; border-radius: 8px; text-align: left; }
+        button { background: #ff4444; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 5px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="content-box">
+        <h1>Welcome to the Locker Room</h1>
+        <p>You have successfully logged in across your devices!</p>
+        <hr>
+        
+        <div id="services-list">
+            <div class="service-item">
+                <strong>Premium Service 1:</strong> Exclusive Entrepreneurship Tips
+            </div>
+            <div class="service-item">
+                <strong>Premium Service 2:</strong> Real-time Business Updates
+            </div>
+        </div>
+
+        <button onclick="logout()">LOGOUT</button>
+    </div>
+
+<script type="module">
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+    // You MUST paste your same firebaseConfig here too!
+    const firebaseConfig = {
+      apiKey: "AIzaSyA...", 
+      authDomain: "locker-room-xxx.firebaseapp.com",
+      projectId: "locker-room-xxx",
+      storageBucket: "locker-room-xxx.appspot.com",
+      messagingSenderId: "123456789",
+      appId: "1:123456789:web:abcdef"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.logout = () => {
+        signOut(auth).then(() => {
+            window.location.href = "palawat.html"; // Redirects back to your login page
+        });
+    }
+</script>
+</body>
+</html>
