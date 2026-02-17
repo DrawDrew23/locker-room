@@ -30,7 +30,6 @@
         .modal-box { background: #262626; padding: 25px; border-radius: 15px; text-align: center; border: 2px solid #ffcc00; width: 100%; max-width: 350px; }
         .btn-logout { background: #ff4444; width: auto; padding: 6px 12px; float: right; color: white; font-size: 0.7rem; border-radius: 5px; }
         
-        /* Admin Management Styling */
         .dev-item { background: #333; padding: 10px; margin-bottom: 8px; border-radius: 8px; border: 1px solid #444; font-size: 0.85rem; }
         .btn-unlock { background: #ff4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; float: right; font-size: 0.75rem; }
         .hidden { display: none; }
@@ -121,13 +120,11 @@
   const devEmails = ["drawdrew79@gmail.com", "danicapadua754@gmail.com"];
   let selectedSlot = null;
 
-  // Real-time Locker Grid Logic
   onSnapshot(collection(db, "lockers"), (snapshot) => {
     const grid = document.getElementById('locker-grid');
     const occList = document.getElementById('occupied-list');
     grid.innerHTML = '';
     occList.innerHTML = '';
-    
     const lockerData = {};
     snapshot.forEach(doc => {
         lockerData[doc.id] = doc.data().status;
@@ -156,11 +153,9 @@
     }
   });
 
-  // UNLOCK FUNCTION
   window.unlockLocker = async (num) => {
-    if (confirm(`Unlock Locker #${num} and make it available?`)) {
+    if (confirm(`Unlock Locker #${num}?`)) {
         await deleteDoc(doc(db, "lockers", String(num)));
-        alert(`Locker #${num} is now Available.`);
     }
   };
 
@@ -182,7 +177,7 @@
     try {
         await setDoc(doc(db, "lockers", String(lockerNum)), { status: "occupied" });
         await deleteDoc(doc(db, "requests", reqId)); 
-        alert(`Approved! Locker #${lockerNum} is now Red/Occupied.`);
+        alert("Approved! Slot is now Red.");
     } catch (e) { alert("Error: " + e.message); }
   };
 
